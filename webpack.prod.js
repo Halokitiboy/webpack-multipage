@@ -14,7 +14,7 @@ module.exports = {
     entry: require('./configs/entry.config.js'),
     output: {
         path: path.join(__dirname, 'build'),
-        publicPath:'./',
+        publicPath:'/',
         filename: 'js/[name].js'
     },
     module: {
@@ -40,12 +40,27 @@ module.exports = {
             {
                 test: /\.(png|jpg|gif)$/,
                 use: [{
-                    loader: 'url-loader',
+                    loader: 'file-loader',
                     options: {
-                        limit: 8192
+                        limit: 8192,
+                        name:'images/[hash].[ext]'
                     }
                 }]
             }
+            ,
+            {
+                test: /\.(htm|html)$/i,
+                loader: 'html-withimg-loader'
+            }
+            // {
+            //     test: /\.(html)$/,
+            //     use: {
+            //       loader: 'html-loader',
+            //       options: {
+            //         attrs: ['img:src',':data-src']
+            //       }
+            //     }
+            //   }
         ]
     },
     plugins:pluginCinfigs

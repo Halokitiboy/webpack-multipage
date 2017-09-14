@@ -2,6 +2,7 @@ const pageArr = require('./pageArr.config.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const pluginCinfigs = [
     new webpack.HotModuleReplacementPlugin(), //热更新必须
@@ -10,12 +11,6 @@ const pluginCinfigs = [
         filename: "vendors.js",
         minChunks: Infinity,
     }),
-    // new webpack.ProvidePlugin({ //加载jq
-    //     $: "jquery",
-    //     jQuery: "jquery",
-    //     "window.jQuery": "jquery",
-    //     // _: "lodash"
-    // }),
     new ExtractTextPlugin("css/main.css")
 ]
 pageArr.forEach((page) => {

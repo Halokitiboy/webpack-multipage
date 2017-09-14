@@ -1,5 +1,5 @@
 const pageArr = [
-    'index',
+    'index/index',
     'main/index',
     'login/index'
 ];

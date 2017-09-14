@@ -35,10 +35,10 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+                loader: ExtractTextPlugin.extract(['style-loader', 'css-loader','postcss-loader'])
             }, {
                 test: /\.less$/,
-                loader: ExtractTextPlugin.extract('css-loader', 'less-loader'),
+                loader: ExtractTextPlugin.extract(['css-loader','postcss-loader', 'less-loader'])
             },
             {
                 test: /\.(png|jpg|gif)$/,
@@ -46,9 +46,13 @@ module.exports = {
                     loader: 'url-loader',
                     options: {
                         limit: 8192,
-                        name:'./images/[hash].[ext]'
+                        name:'../images/[hash].[ext]'
                     }
                 }]
+            },
+            {
+                test: /\.(htm|html)$/i,
+                loader: 'html-withimg-loader'
             }
         ]
     },
