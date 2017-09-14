@@ -31,11 +31,10 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: extractCSS.extract(['css-loader', 'postcss-loader'])
-            },
-            {
-                test: /\.less$/i,
-                use: extractLESS.extract(['css-loader', 'less-loader'])
+                loader: ExtractTextPlugin.extract(['style-loader', 'css-loader','postcss-loader'])
+            }, {
+                test: /\.less$/,
+                loader: ExtractTextPlugin.extract(['css-loader','postcss-loader', 'less-loader'])
             },
             {
                 test: /\.(png|jpg|gif)$/,
@@ -52,15 +51,6 @@ module.exports = {
                 test: /\.(htm|html)$/i,
                 loader: 'html-withimg-loader'
             }
-            // {
-            //     test: /\.(html)$/,
-            //     use: {
-            //       loader: 'html-loader',
-            //       options: {
-            //         attrs: ['img:src',':data-src']
-            //       }
-            //     }
-            //   }
         ]
     },
     plugins:pluginCinfigs

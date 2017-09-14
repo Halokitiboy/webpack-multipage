@@ -7,7 +7,7 @@ const explorer = require('./configs/fileRead');
 const pageArr = require('./configs/pageArr.config.js');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 var entry = require('./configs/entry.config.js');
-//依项目情况使用 jq 还是 zepto
+
 module.exports = {
     entry: entry,
     output: {
