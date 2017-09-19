@@ -7,13 +7,14 @@ const explorer = require('./configs/fileRead');
 const pageArr = require('./configs/pageArr.config.js');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 var entry = require('./configs/entry.config.js');
-
+console.log(entry);
 module.exports = {
     entry: entry,
     output: {
         path: path.join(__dirname, 'build'),
         // publicPath:'',
-        filename: 'js/[name].js'
+        filename: 'js/[name].js',
+        chunkFilename: 'js/[id].chunk.js'
     },
     watch: true,
     devServer: {
@@ -35,18 +36,28 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract(['style-loader', 'css-loader','postcss-loader'])
+                loader: ExtractTextPlugin.extract(['style-loader', 'css-loader', 'postcss-loader'])
             }, {
                 test: /\.less$/,
-                loader: ExtractTextPlugin.extract(['css-loader','postcss-loader', 'less-loader'])
+                loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader', 'less-loader'])
             },
             {
-                test: /\.(png|jpg|gif)$/,
+                test: /\.(png|jpg|gif|ico)$/,
                 use: [{
                     loader: 'url-loader',
                     options: {
                         limit: 8192,
-                        name:'../images/[hash].[ext]'
+                        name: '../images/[hash].[ext]'
+                    }
+                }]
+            },
+            {
+                test: /\.(woff|svg|eot|ttf)\??.*$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 50000,
+                        name: '../[path]/[hash].[ext]'
                     }
                 }]
             },

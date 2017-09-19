@@ -1,8 +1,13 @@
 const pageArr=require('./pageArr.config.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const webpack = require('webpack');
 const pluginCinfigs = [
-    new UglifyJSPlugin()
+    new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        }
+    })
 ]
 pageArr.forEach((page) => {
     const htmlPlugin = new HtmlWebpackPlugin({

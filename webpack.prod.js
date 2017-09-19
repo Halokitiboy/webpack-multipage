@@ -37,7 +37,7 @@ module.exports = {
                 loader: ExtractTextPlugin.extract(['css-loader','postcss-loader', 'less-loader'])
             },
             {
-                test: /\.(png|jpg|gif)$/,
+                test: /\.(png|jpg|gif|ico)$/,
                 use: [{
                     loader: 'file-loader',
                     options: {
@@ -45,8 +45,17 @@ module.exports = {
                         name:'images/[hash].[ext]'
                     }
                 }]
-            }
-            ,
+            },
+            {
+                test: /\.(woff|svg|eot|ttf)\??.*$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 50000,
+                        name: 'fonts/[hash].[ext]'
+                    }
+                }]
+            },
             {
                 test: /\.(htm|html)$/i,
                 loader: 'html-withimg-loader'

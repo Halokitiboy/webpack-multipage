@@ -1,7 +1,23 @@
-
-
+@import url('reset/normalize.css');
+// @import url('../../node_modules/bootstrap/dist/css/bootstrap.min.css');//使用bootstrap
+@import url('../../node_modules/jquery-weui/dist/lib/weui.min.css');//使用WEUI
+body,html{
+    height: 100%;
+    width: 100%;
+}
 body{
-    background: url('../images/jay.jpg') no-repeat;
     display: flex;
+    flex-direction: column;
+    -ms-flex-item-align: 1;
     transform: translate3d(0,0,0);
+    header,footer{
+        text-align: center;
+        background: #37A4D3;
+        color: #fff;
+        padding:10px;
+    }
+    section{
+        flex: 1;
+        padding: 10px;
+    }
 }

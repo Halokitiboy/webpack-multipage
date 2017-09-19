@@ -1,3 +1,3 @@
 require('../../css/main.less');
 
-console.log("login");
+console.log("我是来自main的js");
