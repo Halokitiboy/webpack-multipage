@@ -2,6 +2,8 @@
 const pageArr = [
     'index/index',
     'main/index',
-    'login/index'
+    'login/index',
+    'include/footer',
+    'include/header'
 ];
 module.exports = pageArr;

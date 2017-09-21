@@ -7,6 +7,12 @@ const pluginCinfigs = [
         compress: {
             warnings: false
         }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendors', // 将公共模块提取，生成名为`vendors`的chunk
+        filename: "vendors.js",
+        chunks: pageArr,
+        minChunks: pageArr.length,
     })
 ]
 pageArr.forEach((page) => {
@@ -14,7 +20,8 @@ pageArr.forEach((page) => {
         filename: `./${page}.html`,
         template: `./src/${page}.html`,
         hash: true, // 为静态资源生成hash值
-        chunks: ['vendors', `${page}`]
+        chunks: ['vendors', `${page}`],
+        favicon: './src/images/favicon.ico'
     });
     pluginCinfigs.push(htmlPlugin);
 });

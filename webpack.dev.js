@@ -7,7 +7,21 @@ const explorer = require('./configs/fileRead');
 const pageArr = require('./configs/pageArr.config.js');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 var entry = require('./configs/entry.config.js');
-console.log(entry);
+var glob = require('glob')
+//entries函数
+var entries= function () {
+    var jsDir = path.resolve('./src/', 'js')
+    var entryFiles = glob.sync(jsDir + '/*.{js,jsx}')
+    var map = {};
+
+    for (var i = 0; i < entryFiles.length; i++) {
+        var filePath = entryFiles[i];
+        var filename = filePath.substring(filePath.lastIndexOf('\/') + 1, filePath.lastIndexOf('.'));
+        map[filename] = filePath;
+    }
+    return map;
+}
+console.log(entries());
 module.exports = {
     entry: entry,
     output: {
