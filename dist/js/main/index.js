@@ -1,0 +1,1 @@
+webpackJsonp([0],{0:function(n,o){},10:function(n,o,c){"use strict";c(0),console.log("我是来自main的js")}},[10]);

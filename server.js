@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
-app.use(express.static('build'));
+app.use(express.static('dist'));
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + "/build/index/" + "index.html");
+    res.sendFile(__dirname + "/dist/index/" + "index.html");
 })
 var server = app.listen(8081, function () {
     var host = server.address().address

@@ -13,6 +13,6 @@ require('../../../node_modules/jquery-weui/dist/js/jquery-weui.min');
 //加载头部和尾部
 require('../include/footer');
 require('../include/header');
-
 //工具库
 window._ = require('lodash');
+console.log(`环境为：${process.env.NODE_ENV}`)

@@ -9,12 +9,13 @@ const extractLESS = new ExtractTextPlugin('css/main.css');
 var pluginCinfigs = require('./configs/plugin.prod.config.js');
 pluginCinfigs.push(extractCSS);
 pluginCinfigs.push(extractLESS);
+console.log(`打包环境：${process.env.NODE_ENV}`)
 var dir = path.resolve()
 module.exports = {
     entry: require('./configs/entry.config.js'),
     output: {
-        path: path.join(__dirname, 'build'),
-        publicPath:'/',
+        path: path.join(__dirname, 'dist'),
+        publicPath:'./',
         filename: 'js/[name].js'
     },
     module: {
@@ -62,5 +63,17 @@ module.exports = {
             }
         ]
     },
-    plugins:pluginCinfigs
+    plugins:pluginCinfigs,
+    node: {
+        // prevent webpack from injecting useless setImmediate polyfill because Vue
+        // source contains it (although only uses it if it's native).
+        setImmediate: false,
+        // prevent webpack from injecting mocks to Node native modules
+        // that does not make sense for the client
+        dgram: 'empty',
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty',
+        child_process: 'empty'
+      }
 }

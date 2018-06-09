@@ -1,6 +1,10 @@
 const pageArr=require('./pageArr.config.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const vConsolePlugin = require('vconsole-webpack-plugin'); 
+const env = require('./prod.env');
+const enableConsole = env=== "production"? false: true;
 const webpack = require('webpack');
 const pluginCinfigs = [
     new webpack.optimize.UglifyJsPlugin({
@@ -10,9 +14,20 @@ const pluginCinfigs = [
     }),
     new webpack.optimize.CommonsChunkPlugin({
         name: 'vendors', // 将公共模块提取，生成名为`vendors`的chunk
-        filename: "vendors.js",
+        filename: "js/public/vendors.js",
         chunks: pageArr,
         minChunks: pageArr.length,
+    }),
+    new webpack.DefinePlugin({
+        'process.env': env
+    }),
+    new CleanWebpackPlugin(['dist'],{
+        root:     '/webpack-multipage',
+        verbose:  true,
+        dry:      false
+      }),
+    new vConsolePlugin({
+        enable: enableConsole 
     })
 ]
 pageArr.forEach((page) => {

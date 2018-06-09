@@ -1,0 +1,1 @@
+webpackJsonp([1],{0:function(o,n){},11:function(o,n,e){"use strict";e(0);var c=[{x:1,y:2},{x:2,y:1}];console.log("我是来自login的js",_.differenceWith(c,[{x:1,y:2}],_.isEqual),$("p").text()),console.log()}},[11]);

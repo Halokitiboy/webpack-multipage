@@ -25,16 +25,27 @@ console.log(entries());
 module.exports = {
     entry: entry,
     output: {
-        path: path.join(__dirname, 'build'),
+        path: path.join(__dirname, 'dist'),
         // publicPath:'',
         filename: 'js/[name].js',
         chunkFilename: 'js/[id].chunk.js'
     },
     watch: true,
     devServer: {
-        contentBase: path.join(__dirname, "./build"),
+        contentBase: path.join(__dirname, "./dist"),
         compress: true,
-        port: 9000
+        port: 9000,
+        proxy: {},
+        overlay: { 
+            warnings: false,
+            errors: true 
+        },
+        quiet: false, // necessary for FriendlyErrorsPlugin
+        watchOptions: {
+            aggregateTimeout: 300,
+            ignored: /node_modules/
+        },
+        noInfo: false
     },
     module: {
         rules: [{
@@ -81,5 +92,17 @@ module.exports = {
             }
         ]
     },
-    plugins: require('./configs/plugin.dev.config.js')
+    plugins: require('./configs/plugin.dev.config.js'),
+    node: {
+        // prevent webpack from injecting useless setImmediate polyfill because Vue
+        // source contains it (although only uses it if it's native).
+        setImmediate: false,
+        // prevent webpack from injecting mocks to Node native modules
+        // that does not make sense for the client
+        dgram: 'empty',
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty',
+        child_process: 'empty'
+      }
 }
