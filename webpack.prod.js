@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
+const pathConfig = require('./configs/pathconfig')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -15,7 +16,7 @@ module.exports = {
     entry: require('./configs/entry.config.js'),
     output: {
         path: path.join(__dirname, 'dist'),
-        publicPath:'./',
+        publicPath:pathConfig.build.publicPath,
         filename: 'js/[name].js'
     },
     module: {
