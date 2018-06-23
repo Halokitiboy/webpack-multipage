@@ -14,12 +14,14 @@ yarn
 >安装好依赖后运行
 
 ```
- npm run dev 或者 yarn dev 即可在 http://localhost:9000/index/index.html 查看
+ npm run dev 即可在 http://localhost:9000/index/index.html 查看
 ```
 
 
 ```
-npm run build 或者 yarn build 即可打包生产环境的包了
+npm run build:test  即可打包测试环境的包了
+
+npm run build:prod   即可打包生产环境的包了
 ```
 >运行一下命令即可查看打包后的页面
 
@@ -54,11 +56,10 @@ npm run server 或者yarn server
 
 ```
 output: {
-
-		path: path.resolve(__dirname, "assets"),
-        publicPath: '/dist/assets/',//当生成的资源文件和站点不在同一地方时需要配置改地址 e.g.：站点在src,资源生成到/src/static/dist，那么publicPath="/static/dist"
-        filename: "[name].[hash:6].js",
-        chunkFilename: "[id].chunk.js",
+	path: path.resolve(__dirname, "assets"),
+    publicPath: '/dist/assets/',//当生成的资源文件和站点不在同一地方时需要配置改地址 e.g.：站点在src,资源生成到/src/static/dist，那么publicPath="/static/dist"
+    filename: "[name].[hash:6].js",
+    chunkFilename: "[id].chunk.js",
     }
 ```
 

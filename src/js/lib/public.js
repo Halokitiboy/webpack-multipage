@@ -9,7 +9,6 @@ window.jQuery = require('jquery');
 require('../../../node_modules/jquery-weui/dist/js/jquery-weui.min');
 // require('../../../node_modules/jquery-weui/dist/js/city-picker.min');
 // require('../../../node_modules/jquery-weui/dist/js/swiper.min');
-
 //加载头部和尾部
 require('../include/footer');
 require('../include/header');
